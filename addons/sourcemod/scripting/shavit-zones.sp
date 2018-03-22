@@ -1918,9 +1918,9 @@ void InsertZone(int client)
 
 		if(type != Zone_Teleport)
 		{
-			FormatEx(sQuery, 512, "INSERT INTO %smapzones (map, type, corner1_x, corner1_y, corner1_z, corner2_x, corner2_y, corner2_z, track) VALUES ('%s', '%d', '%.03f', '%.03f', '%.03f', '%.03f', '%.03f', '%.03f', '%d');", gS_MySQLPrefix, gS_Map, type, gV_Point1[client][0], gV_Point1[client][1], gV_Point1[client][2], gV_Point2[client][0], gV_Point2[client][1], gV_Point2[client][2], gI_ZoneTrack[client]);
+			FormatEx(sQuery, 512, "INSERT INTO %smapzones (map, type, corner1_x, corner1_y, corner1_z, corner2_x, corner2_y, corner2_z, track) VALUES ('%s', %d, '%.03f', '%.03f', '%.03f', '%.03f', '%.03f', '%.03f', %d);", gS_MySQLPrefix, gS_Map, type, gV_Point1[client][0], gV_Point1[client][1], gV_Point1[client][2], gV_Point2[client][0], gV_Point2[client][1], gV_Point2[client][2], gI_ZoneTrack[client]);
 			gH_SQL.Query(SQL_InsertZone_Callback, sQuery, GetClientSerial(client));
-			FormatEx(sQuery, 512, "INSERT INTO cksurf.ck_zones (mapname, zoneid, zonetype, zonetypeid, pointa_x, pointa_y, pointa_z, pointb_x, pointb_y, pointb_z, zonegroup) VALUES ('%s', '%d', '%d', '%d', '%.03f', '%.03f', '%.03f', '%.03f', '%.03f', '%.03f', '%d');", gS_Map, type, type+=2, type--, gV_Point1[client][0], gV_Point1[client][1], gV_Point1[client][2], gV_Point2[client][0], gV_Point2[client][1], gV_Point2[client][2], gI_ZoneTrack[client]);
+			FormatEx(sQuery, 512, "INSERT INTO cksurf.ck_zones (mapname, zoneid, zonetype, zonetypeid, pointa_x, pointa_y, pointa_z, pointb_x, pointb_y, pointb_z, zonegroup) VALUES ('%s', %d, %d, %d, '%.03f', '%.03f', '%.03f', '%.03f', '%.03f', '%.03f', %d);", gS_Map, type-=1, type+=2, type--, gV_Point1[client][0], gV_Point1[client][1], gV_Point1[client][2], gV_Point2[client][0], gV_Point2[client][1], gV_Point2[client][2], gI_ZoneTrack[client]);
 		}
 
 		else
